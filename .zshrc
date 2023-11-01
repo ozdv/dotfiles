@@ -1,41 +1,12 @@
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-#################### Aliases ####################
-
-# Navigation
-alias ..="cd .."
-alias dev='cd ~/dev'
-alias qfe='cd ~/dev/quickly/quickly-next'
-alias qbe='cd ~/dev/quickly/quickly-sls'
-
-# Command shortcuts
-alias l='ls -a'
-
-# Apps
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-
-# Show/hide hidden files in Finder
-alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-
-# Hide/show all desktop icons
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-
-# Lock the screen (when going AFK)
-alias afk="osascript -e 'tell app \"System Events\" to key code 12 using {control down, command down}'"
-
-# Print each PATH entry on a separate line
-alias path='echo -e ${PATH//:/\\n}'
-
+# export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -99,12 +70,10 @@ alias path='echo -e ${PATH//:/\\n}'
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -118,52 +87,65 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+
+
+# Kill port function. Set alias later down
+findandkill() {
+  port=$(lsof -n -i4TCP:$1 | grep LISTEN | awk '{ print $2 }')
+  if [ -n "$port" ]; then
+    kill -9 "$port"
+    echo "Killed process $port"
+  else
+    echo "No process found on port $1"
+  fi
+}
+
+# Set v18 node as default by linking with brew,
+# and now this line installs it in PATH to take precedense from node v20
+export PATH="/usr/local/opt/node@18/bin:$PATH"
+
+
+#################### Aliases ####################
+# For a full list of active aliases, run `alias`.
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#NVM
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# Navigation
+alias ..="cd .."
+alias dev='cd ~/dev'
+alias ccat='cd ~/dev/iCatholic && code .'
+alias cqfe='cd ~/dev/quickly/quickly-next && code .'
+alias qfe='cd ~/dev/quickly/quickly-next'
+alias cqbe='cd ~/dev/quickly/quickly-sls && code .'
+alias qbe='cd ~/dev/quickly/quickly-sls'
+alias cqadmin='cd ~/dev/quickly/quickly-admin && code .'
+alias zshconfig="code ~/.zshrc"
 
-# lazyload nvm
-# https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/
-# all props goes to http://broken-by.me/lazy-load-nvm/
-# grabbed from reddit @ https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/
+# Command shortcuts
+alias l='ls -a'
 
-# lazynvm() {
-#   unset -f nvm node npm npx
-#   export NVM_DIR=~/.nvm
-#   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-#   if [ -f "$NVM_DIR/bash_completion" ]; then
-#     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-#   fi
-# }
+# Apps
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
-# nvm() {
-#   lazynvm 
-#   nvm $@
-# }
- 
-# node() {
-#   lazynvm
-#   node $@
-# }
- 
-# npm() {
-#   lazynvm
-#   npm $@
-# }
+# Show/hide hidden files in Finder
+alias showfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hidefiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
-# npx() {
-#   lazynvm
-#   npx $@
+# Hide/show all desktop icons
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+
+# Lock the screen (when going AFK)
+alias afk="osascript -e 'tell app \"System Events\" to key code 12 using {control down, command down}'"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# Kills specific port i.e. killport 3000
+alias killport=findandkill
+
 # %m is macbook model
 # %n is username of acc
-
 PROMPT='%B%F{#c0caf5}%n@%m ~ %b'
+
