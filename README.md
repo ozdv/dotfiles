@@ -40,6 +40,13 @@ Select https probably.
 gh auth login
 ```
 
+Login for vscode:
+
+```
+git config --global user.name "ozdv"
+git config --global user.email cam@ozdv.me
+```
+
 Make `dev` folder, and
 
 ```

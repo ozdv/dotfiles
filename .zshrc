@@ -117,6 +117,7 @@ alias cqfe='cd ~/dev/quickly/quickly-next && code .'
 alias qfe='cd ~/dev/quickly/quickly-next'
 alias cqbe='cd ~/dev/quickly/quickly-sls && code .'
 alias qbe='cd ~/dev/quickly/quickly-sls'
+alias qadmin='cd ~/dev/quickly/quickly-admin'
 alias cqadmin='cd ~/dev/quickly/quickly-admin && code .'
 alias zshconfig="code ~/.zshrc"
 
@@ -145,5 +146,6 @@ alias killport=findandkill
 
 # %m is macbook model
 # %n is username of acc
-PROMPT='%B%F{#c0caf5}%n@%m ~ %b'
+# Commending out for now because it overrides the git terminal
+# PROMPT='%B%F{#c0caf5}%n@%m ~ %b'
 
