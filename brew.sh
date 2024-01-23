@@ -30,6 +30,6 @@ brew install vim
 brew install neovim
 brew install tmux
 brew install tree
-
+brew install bluesnooze
 # Remove outdated versions from the cellar.
 brew cleanup
