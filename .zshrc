@@ -1,4 +1,3 @@
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -8,84 +7,22 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+	git 
+	gitfast
+)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-# export MANPATH="/usr/local/man:$MANPATH"
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# For zoxide
+eval "$(zoxide init zsh)"
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+#################### Commands ####################
 
 # Kill port function. Set alias later down
 findandkill() {
@@ -98,30 +35,38 @@ findandkill() {
   fi
 }
 
-# Set v18 node as default by linking with brew,
-# and now this line installs it in PATH to take precedense from node v20
-export PATH="/usr/local/opt/node@18/bin:$PATH"
-
-
 #################### Aliases ####################
 # For a full list of active aliases, run `alias`.
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 
-# Navigation
-alias ..="cd .."
+# dev:
 alias dev='cd ~/dev'
+alias ozdv='cd ~/dev/ozdv.me'
 alias ccat='cd ~/dev/iCatholic && code .'
-alias cqfe='cd ~/dev/quickly/quickly-next && code .'
-alias qfe='cd ~/dev/quickly/quickly-next'
-alias cqbe='cd ~/dev/quickly/quickly-sls && code .'
-alias qbe='cd ~/dev/quickly/quickly-sls'
-alias qadmin='cd ~/dev/quickly/quickly-admin'
-alias cqadmin='cd ~/dev/quickly/quickly-admin && code .'
 alias zshconfig="code ~/.zshrc"
 
+# Work:
+alias quickly='cd ~/dev/quickly'
+alias cqfe='cd ~/dev/quickly/quickly-fe && code .'
+alias qfe='cd ~/dev/quickly/quickly-fe'
+alias cqbe='cd ~/dev/quickly/quickly-sls && code .'
+alias qbe='cd ~/dev/quickly/quickly-sls'
+alias qtest='cd ~/dev/quickly/quickly-tests'
+alias cqtest='cd ~/dev/quickly/quickly-tests && code .'
+
+# Github
+alias dp='git checkout develop && git pull'
+alias mp='git checkout main && git pull'
+alias dm='git fetch origin develop && git merge origin/develop'
+alias mm='git fetch origin main && git merge origin/main'
+alias pr='gh pr create --base develop --reviewer bkoch31,tim-helloquickly'
+alias hf='gh pr create --base main --reviewer bkoch31,tim-helloquickly'
+
+
 # Command shortcuts
+alias ..='cd ..'
 alias l='ls -a'
 
 # Apps
@@ -140,12 +85,39 @@ alias afk="osascript -e 'tell app \"System Events\" to key code 12 using {contro
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+alias fpath='echo -e ${FPATH//:/\\n}'
 
 # Kills specific port i.e. killport 3000
 alias killport=findandkill
 
-# %m is macbook model
-# %n is username of acc
-# Commending out for now because it overrides the git terminal
-# PROMPT='%B%F{#c0caf5}%n@%m ~ %b'
+# For iTerm/zsh redo and kill line 
+bindkey "^X\x7f" backward-kill-line
+bindkey "^X^_" redo
 
+# For auto-updating w/o being prompted
+DISABLE_UPDATE_PROMPT=true
+
+# For Node 20
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+
+# For Homebrew
+export PATH="/opt/homebrew/bin:$PATH"
+
+# For Android SDK emulator
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# For JDK for Android
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+
+# For NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completio
+
+# zsh-autosuggestions - must be at the end of .zshrc
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# zsh-syntax-highlighting - must be at the end of .zshrc
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
