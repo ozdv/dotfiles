@@ -4,24 +4,14 @@ These are the steps to reproduce my entire OS.
 
 ## Setup
 
-1.
-
 ```sh
 sh ./install.sh
 ```
 
 ## MacOS
 
-To show all hidden files:
-
 ```sh
-defaults write com.apple.Finder AppleShowAllFiles true && killall Finder
-```
-
-To hide last login in terminal:
-
-```sh
-touch .hushlogin
+sh ./macos.sh
 ```
 
 To install XCode:
@@ -67,13 +57,7 @@ cd ~/Dev && gh repo clone ozdv/dotfiles && cd dotfiles
 sudo chmod u+x ./brew.sh && ./brew.sh
 ```
 
-To setup locate:
-
-```sh
-sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
-```
-
-## Brew Casks
+## Note
 
 Here's a list of [casks](https://formulae.brew.sh/cask/).
 
@@ -83,13 +67,13 @@ Note: Double check that all casks will install appropriately (some may try and i
 sudo chmod u+x ./casks.sh && ./casks.sh
 ```
 
-## MacOS Settings:
+## MacOS Settings
 
 ```sh
 sudo chmod u+x ./macos.sh && ./macos.sh
 ```
 
-## ITerm2 Settings:
+## iTerm2 Settings
 
 Install oh-my-zsh:
 

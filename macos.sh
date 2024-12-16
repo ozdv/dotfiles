@@ -5,6 +5,12 @@ defaults write com.apple.screencapture disable-shadow -bool true
 # and double-click selection.
 defaults write .GlobalPreferences AppleTextBreakLocale en_US_POSIX
 
+# Show all files in Finder
+defaults write com.apple.Finder AppleShowAllFiles true 
+
+# Hide last login in terminal
+touch .hushlogin
+
 # Set Cursor as the default editor for various file types.
 # Change to `com.microsoft.VSCode` for VS Code.
 duti -s com.todesktop.230313mzl4w4u92 public.data all # Works for files without a filename extension.
