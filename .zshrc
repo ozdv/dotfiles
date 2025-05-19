@@ -68,7 +68,7 @@ alias hf='gh pr create --base main --reviewer bkoch31,hrishi-quickly,marvinhosea
 
 # Command shortcuts
 alias ..='cd ..'
-alias l='ls -a'
+alias l='ls -F'
 
 # Apps
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
@@ -127,7 +127,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 # For NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completio
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
 
@@ -152,7 +152,10 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # zsh-syntax-highlighting - must be at the end of .zshrc
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# If you receive "highlighters directory not found" error message,you may need to add the following to your .zshenv:
+# export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
+
 
 # pnpm
 export PNPM_HOME="/Users/oz/Library/pnpm"
