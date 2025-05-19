@@ -31,7 +31,6 @@ Note: Double check that all casks will install appropriately (some may try and i
 ## For Github
 
 Setup auth by running this.
-
 Select https probably.
 
 ```sh
@@ -75,8 +74,15 @@ sudo chmod u+x ./macos.sh && ./macos.sh
 
 ## iTerm2 Settings
 
-Install oh-my-zsh:
 
+
+## ZSH
+```sh
+cp .zshrc ~/.zshrc && source ~/.zshrc
+```
+
+### Oh-my-zsh:
+Install:
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
@@ -91,3 +97,10 @@ sudo chmod u+x ./iterm.sh && ./iterm.sh
 
 - Configure tmux
 - Configure vim/nvim
+
+
+## Cursor
+
+```sh
+chmod +x install-extensions.sh && ./install-extensions.sh
+```

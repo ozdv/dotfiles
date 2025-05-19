@@ -1,0 +1,38 @@
+Things to look into:
+
+https://macos-defaults.com/finder/appleshowallfiles.html
+
+
+“X app is from the internet. Are you Sur you want to open it?” Asked a million times 
+
+
+
+What I did in settings:
+trackpad:
+	Disable force click
+	scrollbar to natural
+	Turn off smart zoom
+
+keyboard:
+Key repeat to fast
+Delay until repeat to short 
+
+
+Desktop & Dock:
+	position: left
+	Minimize windows using: scale effect
+  turn off show suggested and recent apps
+
+display:
+  more space
+  disable automatically adjust brightness
+  disable ture tone
+
+
+wallpaper:
+  set to black
+
+
+battery:
+  slightly dim display on battery life
+    

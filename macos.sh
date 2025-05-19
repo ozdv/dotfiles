@@ -6,10 +6,32 @@ defaults write com.apple.screencapture disable-shadow -bool true
 defaults write .GlobalPreferences AppleTextBreakLocale en_US_POSIX
 
 # Show all files in Finder
-defaults write com.apple.Finder AppleShowAllFiles true 
-
+defaults write com.apple.finder "AppleShowAllFiles" -bool "false"
 # Hide last login in terminal
 touch .hushlogin
+
+# Disable the “Are you sure you want to open this app?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# Set a fast key repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+
+
+# ========For dock preferences:================
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+# Remove the auto-hiding Dock delay
+defaults write com.apple.dock autohide-delay -float 0
+
+# Set icon size of Dock items
+defaults write com.apple.dock tilesize -int 36
+
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+
 
 # Set Cursor as the default editor for various file types.
 # Change to `com.microsoft.VSCode` for VS Code.
@@ -52,3 +74,8 @@ duti -s com.todesktop.230313mzl4w4u92 .vue all
 duti -s com.todesktop.230313mzl4w4u92 .wsdl all
 duti -s com.todesktop.230313mzl4w4u92 .yaml all
 duti -s com.todesktop.230313mzl4w4u92 .yml all
+
+
+killall Finder
+killall Dock
+killall SystemUIServer
